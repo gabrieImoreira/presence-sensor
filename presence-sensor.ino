@@ -37,11 +37,11 @@ void acionaAlarme(long duration, int freq) {
     duration *= 1000000;            //definição de variaveis
     int period = (1.0 / freq) * 1000000;
     long time = 0;
-    while ((time < duration) && digitalRead(buttonPin) == HIGH) {
-        digitalWrite(buzzer,HIGH);
-        delayMicroseconds(period / 2);
+    while ((time < duration) && digitalRead(buttonPin) == HIGH) { // condições pra funcionar (incluindo botão)
+        digitalWrite(buzzer,HIGH); // aciona buzzer
+        delayMicroseconds(period / 2); 
         digitalWrite(buzzer, LOW);
         delayMicroseconds(period / 2);
-        time += (period);
+        time += (period); //incrementação do tempo
     }
 }
