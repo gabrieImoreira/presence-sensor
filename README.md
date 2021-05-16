@@ -1,5 +1,4 @@
-# Projeto para faculdade, alarme residencial
-
+# Projeto para faculdade de alarme residencial
 
 Materiais utilizados:
 
