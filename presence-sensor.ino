@@ -15,6 +15,7 @@ void setup() {
 }
 
 void loop(){
+   //tone(buzzer,160,30);
   
   val = digitalRead(inputSensor);  // le status do sensor
   
@@ -33,15 +34,14 @@ void loop(){
 // duração em s, frequência em Hz
 void acionaAlarme(long duration, int freq) {
   
-  
-    duration *= 1000000;
+    duration *= 1000000;            //definição de variaveis
     int period = (1.0 / freq) * 1000000;
-    long elapsed_time = 0;
-    while ((elapsed_time < duration) && digitalRead(buttonPin) == HIGH) {
+    long time = 0;
+    while ((time < duration) && digitalRead(buttonPin) == HIGH) {
         digitalWrite(buzzer,HIGH);
         delayMicroseconds(period / 2);
         digitalWrite(buzzer, LOW);
         delayMicroseconds(period / 2);
-        elapsed_time += (period);
+        time += (period);
     }
 }
