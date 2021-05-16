@@ -9,4 +9,4 @@ Materiais utilizados:
 - 1 resistores de 1KΩ
 - 1 botão push-button
 
-![[https://github.com/gabrieImoreira/presence-sensor/blob/main/archives/project.png]]
+![[https://github.com/gabrieImoreira/presence-sensor/blob/main/archives/project.png?raw=true]]
