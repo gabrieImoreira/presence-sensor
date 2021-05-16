@@ -1,5 +1,4 @@
-# Projeto para faculdade, alarme residencial
-
+# Projeto para faculdade de alarme residencial
 
 Materiais utilizados:
 
@@ -8,5 +7,6 @@ Materiais utilizados:
 - 1 buzzer
 - 1 resistores de 1KΩ
 - 1 botão push-button
+- 1 led
 
-![[https://github.com/gabrieImoreira/presence-sensor/blob/main/archives/project.png?raw=true]]
+![img](https://github.com/gabrieImoreira/presence-sensor/blob/main/archives/project.png)
