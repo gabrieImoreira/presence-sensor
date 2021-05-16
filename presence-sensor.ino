@@ -3,47 +3,41 @@ int ledPin = 13;                // definindo pino do led
 int inputSensor = 2;               // pino do sensor
 int control = LOW;             // we start, assuming no motion detected
 int val = 0;                    // variável que vai ler o status do pino
-int buzzer = 10;           // pino do buzzer
+int buzzer = 10;           	// pino do buzzer
+int buttonPin = 8;
 
 void setup() {
   pinMode(ledPin, OUTPUT);      // led como output
   pinMode(inputSensor, INPUT);     // sensor como output
   pinMode(buzzer, OUTPUT);		// buzzer como output
-  Serial.begin(9600);
+  pinMode(buttonPin, INPUT_PULLUP);	// botao como input
+  Serial.begin(9600);			// start na porta serial
 }
 
 void loop(){
-  val = digitalRead(inputSensor);  // read input value
-  if (val == HIGH) {            // check if the input is HIGH
-    digitalWrite(ledPin, HIGH);  // turn LED ON
-    playTone(300, 160);
-    delay(150);
-
-    
-    if (control == LOW) {
-      // we have just turned on
-      Serial.println("Motion detected!");
-      // We only want to print on the output change, not state
-      control = HIGH;
-    }
-  } else {
-      digitalWrite(ledPin, LOW); // turn LED OFF
-      playTone(0, 0);
-      delay(300);    
-      if (control == HIGH){
-      // we have just turned off
-      Serial.println("Motion ended!");
-      // We only want to print on the output change, not state
-      control = LOW;
-    }
+  
+  val = digitalRead(inputSensor);  // le status do sensor
+  
+  if (val == HIGH) {            // check se o sinal HIGH("ALTO")
+   		digitalWrite(ledPin, HIGH);  // liga o led
+    	acionaAlarme(30, 160);          // função que controla o buzzer
+  		delay(150);					
+		Serial.println("Presença detectada"); // imprime no monitor serial
+  } else {                           // se não:
+      digitalWrite(ledPin, LOW); // led desligado
+      acionaAlarme(0, 0);           // função zerada
+      delay(300);
+  
   }
 }
-// duration in mSecs, frequency in hertz
-void playTone(long duration, int freq) {
-    duration *= 1000;
+// duração em s, frequência em Hz
+void acionaAlarme(long duration, int freq) {
+  
+  
+    duration *= 1000000;
     int period = (1.0 / freq) * 1000000;
     long elapsed_time = 0;
-    while (elapsed_time < duration) {
+    while ((elapsed_time < duration) && digitalRead(buttonPin) == HIGH) {
         digitalWrite(buzzer,HIGH);
         delayMicroseconds(period / 2);
         digitalWrite(buzzer, LOW);
